@@ -15,7 +15,6 @@ module "my-elasticsearch" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | allowed_cidrs | List of CIDR ranges to allow HTTPS access to the elasticsearch cluster | list | `<list>` | no |
-| create_service_linked_role | Create an IAM Service linked role for ElasticSearch | string | `true` | no |
 | dedicated_master_instance_count | Number of dedicated master instances in the elasticsearch cluster | string | `1` | no |
 | domain_name | Name of the Elasticsearch cluster | string | - | yes |
 | elasticsearch_version | Verion of Elasticsearch cluster | string | `6.4` | no |
