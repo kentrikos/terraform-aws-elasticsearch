@@ -39,8 +39,6 @@ resource "aws_elasticsearch_domain" "this" {
   access_policies = "${data.aws_iam_policy_document.elasticsearch_access.json}"
 
   tags = "${var.tags}"
-
-  depends_on = ["aws_iam_service_linked_role.es"]
 }
 
 resource "aws_security_group" "elasticsearch_https" {
@@ -54,9 +52,4 @@ resource "aws_security_group" "elasticsearch_https" {
 
     cidr_blocks = ["${var.allowed_cidrs}"]
   }
-}
-
-resource "aws_iam_service_linked_role" "es" {
-  count            = "${var.create_service_linked_role ? 1 : 0}"
-  aws_service_name = "es.amazonaws.com"
 }
