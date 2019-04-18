@@ -45,6 +45,11 @@ variable "allowed_cidrs" {
   default     = []
 }
 
+variable "create_service_linked_role" {
+  description = "Create an IAM Service linked role for ElasticSearch"
+  default     = true
+}
+
 variable "tags" {
   description = "Map of tags to apply to resources"
   type        = "map"
