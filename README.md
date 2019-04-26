@@ -52,8 +52,9 @@ module "my-logging" {
 
 | Name | Description |
 |------|-------------|
-| arn | Amazon ARN of the ElasticSearch domain. |
-| domain_id | The unique ID of the ElasticSearch domain. |
-| domain_name | The name of the ElasticSearch domain. |
-| endpoint | The url endpoint for the ElasticSearch cluster. |
+| elasticsearch_arn | Amazon ARN of the ElasticSearch domain. |
+| elasticsearch_domain_id | The unique ID of the ElasticSearch domain. |
+| elasticsearch_domain_name | The name of the ElasticSearch domain. |
+| elasticsearch_endpoint | The url endpoint for the ElasticSearch cluster. |
+| iam_role_arn | Arn of the IAM role for logging |
 | kibana_endpoint | The domain endpoint for Kibana (without https scheme). |
