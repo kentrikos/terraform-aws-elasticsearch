@@ -11,7 +11,7 @@ variable "subnet_ids" {
   type        = "list"
 }
 
-variable "domain_name" {
+variable "elasticsearch_domain_name" {
   description = "Name of the Elasticsearch cluster"
 }
 
@@ -20,27 +20,27 @@ variable "elasticsearch_version" {
   default     = "6.5"
 }
 
-variable "volume_size" {
+variable "elasticsearch_volume_size" {
   description = "The size of the EBS volumes attached in GB (size per instance)"
   default     = 10
 }
 
-variable "instance_type" {
+variable "elasticsearch_instance_type" {
   description = "Instance type of the elasticsearch cluster"
   default     = "r5.large.elasticsearch"
 }
 
-variable "instance_count" {
+variable "elasticsearch_instance_count" {
   description = "Number of instances in the elasticsearch cluster"
   default     = 1
 }
 
-variable "dedicated_master_count" {
+variable "elasticsearch_dedicated_master_count" {
   description = "Number of dedicated master instances in the elasticsearch cluster"
   default     = 3
 }
 
-variable "dedicated_master_type" {
+variable "elasticsearch_dedicated_master_type" {
   description = "Instance type of the elasticsearch dedicated masters"
   default     = "r5.large.elasticsearch"
 }
@@ -57,7 +57,7 @@ variable "tags" {
   default     = {}
 }
 
-variable "enable_zone_awareness" {
+variable "elasticsearch_enable_zone_awareness" {
   description = "Enable multi-avaliability zone deployment of the Elasticsearch nodes. (If enabled, the number of subnets must be a multiple of the instance_count)"
   default     = false
 }
@@ -103,7 +103,7 @@ variable "fluentd_image_tag" {
   default     = "latest"
 }
 
-variable "logstash_prefix" {
+variable "elasticsearch_logstash_prefix" {
   description = "Prefix of logstash indexes created in ElasticSearch"
   default     = "logstash"
 }

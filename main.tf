@@ -5,7 +5,7 @@ data "aws_iam_policy_document" "elasticsearch_access" {
     sid       = "ElasticSearchAccess"
     actions   = ["es:*"]
     effect    = "Allow"
-    resources = ["arn:aws:es:${var.region}:${data.aws_caller_identity.current.account_id}:domain/${var.domain_name}/*"]
+    resources = ["arn:aws:es:${var.region}:${data.aws_caller_identity.current.account_id}:domain/${var.elasticsearch_domain_name}/*"]
 
     principals = {
       type        = "AWS"
@@ -15,21 +15,21 @@ data "aws_iam_policy_document" "elasticsearch_access" {
 }
 
 resource "aws_elasticsearch_domain" "this" {
-  domain_name           = "${var.domain_name}"
+  domain_name           = "${var.elasticsearch_domain_name}"
   elasticsearch_version = "${var.elasticsearch_version}"
 
   ebs_options {
-    ebs_enabled = "${var.volume_size > 0 ? true : false }"
-    volume_size = "${var.volume_size}"
+    ebs_enabled = "${var.elasticsearch_volume_size > 0 ? true : false }"
+    volume_size = "${var.elasticsearch_volume_size}"
   }
 
   cluster_config {
-    instance_count           = "${var.instance_count}"
-    instance_type            = "${var.instance_type}"
-    dedicated_master_enabled = "${var.dedicated_master_count > 0 ? 1 : 0}"
-    dedicated_master_count   = "${var.dedicated_master_count}"
-    dedicated_master_type    = "${var.dedicated_master_type}"
-    zone_awareness_enabled   = "${var.enable_zone_awareness}"
+    instance_count           = "${var.elasticsearch_instance_count}"
+    instance_type            = "${var.elasticsearch_instance_type}"
+    dedicated_master_enabled = "${var.elasticsearch_dedicated_master_count > 0 ? 1 : 0}"
+    dedicated_master_count   = "${var.elasticsearch_dedicated_master_count}"
+    dedicated_master_type    = "${var.elasticsearch_dedicated_master_type}"
+    zone_awareness_enabled   = "${var.elasticsearch_enable_zone_awareness}"
   }
 
   vpc_options {
@@ -44,7 +44,7 @@ resource "aws_elasticsearch_domain" "this" {
 }
 
 resource "aws_security_group" "elasticsearch_https" {
-  name   = "elasticsearch-logging-${var.domain_name}"
+  name   = "elasticsearch-logging-${var.elasticsearch_domain_name}"
   vpc_id = "${var.vpc_id}"
 
   ingress {
@@ -90,12 +90,12 @@ data "aws_iam_policy_document" "logging_trust_policy" {
 }
 
 resource "aws_iam_policy" "logging_policy" {
-  name   = "elasticsearch-logging-${var.domain_name}"
+  name   = "elasticsearch-logging-${var.elasticsearch_domain_name}"
   policy = "${data.aws_iam_policy_document.logging_policy.json}"
 }
 
 resource "aws_iam_role" "logging_role" {
-  name               = "elasticsearch-logging-${var.domain_name}"
+  name               = "elasticsearch-logging-${var.elasticsearch_domain_name}"
   assume_role_policy = "${data.aws_iam_policy_document.logging_trust_policy.json}"
 }
 
@@ -113,7 +113,7 @@ data "template_file" "helm_fluentd_values" {
     image_url              = "${var.fluentd_image_repository}"
     image_tag              = "${var.fluentd_image_tag}"
     region                 = "${var.region}"
-    logstash_prefix        = "${var.logstash_prefix}"
+    logstash_prefix        = "${var.elasticsearch_logstash_prefix}"
   }
 }
 
