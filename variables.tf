@@ -47,6 +47,7 @@ variable "dedicated_master_type" {
 
 variable "elasticsearch_allowed_cidrs" {
   description = "List of CIDR ranges to allow HTTPS access to the elasticsearch cluster"
+  type        = "list"
   default     = []
 }
 
