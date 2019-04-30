@@ -34,7 +34,7 @@ resource "aws_elasticsearch_domain" "this" {
 
   vpc_options {
     # subnet_ids         = ["${slice(var.subnet_ids, 0, (local.enable_zone_awareness == 0 ? 1 : length(var.subnet_ids) - (length(var.subnet_ids) % 2) ))}"]
-    subnet_ids         = ["${var.subnet_ids}"]
+    subnet_ids         = ["${var.elasticsearch_subnet_ids}"]
     security_group_ids = ["${aws_security_group.elasticsearch_https.id}"]
   }
 

@@ -6,7 +6,7 @@ variable "vpc_id" {
   description = "VPC ID"
 }
 
-variable "subnet_ids" {
+variable "elasticsearch_subnet_ids" {
   description = "List of subnet ids to host the Elasticsearch cluster"
   type        = "list"
 }

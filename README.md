@@ -34,6 +34,7 @@ module "my-logging" {
 | elasticsearch_instance_count | Number of instances in the elasticsearch cluster | string | `1` | no |
 | elasticsearch_instance_type | Instance type of the elasticsearch cluster | string | `r5.large.elasticsearch` | no |
 | elasticsearch_logstash_prefix | Prefix of logstash indexes created in ElasticSearch | string | `logstash` | no |
+| elasticsearch_subnet_ids | List of subnet ids to host the Elasticsearch cluster | list | - | yes |
 | elasticsearch_version | Verion of Elasticsearch cluster | string | `6.5` | no |
 | elasticsearch_volume_size | The size of the EBS volumes attached in GB (size per instance) | string | `10` | no |
 | enable_fluentd | Enable/Deploy fluentd into the cluster and ship logs to ES | string | `true` | no |
@@ -42,7 +43,6 @@ module "my-logging" {
 | fluentd_namespace | The kubernetes namespace to use for the fluentd deployment | string | `logging` | no |
 | fluentd_release_name | Name for the fluentd deployment | string | `fluentd-elasticsearch` | no |
 | region | AWS region name | string | - | yes |
-| subnet_ids | List of subnet ids to host the Elasticsearch cluster | list | - | yes |
 | tags | Map of tags to apply to resources | map | `<map>` | no |
 | tiller_service_account | Tiller service account name used for helm | string | `tiller` | no |
 | trusted_roles_arns | List of trusted role arns allowed to assume role allowed for logging into Elasticsearch | list | `<list>` | no |
