@@ -12,6 +12,13 @@ configMaps:
       @type kubernetes_metadata
     </filter>
 
+    <filter **>
+      @type record_transformer
+      <record>
+        aws_account_id ${aws_account_id}
+      </record>
+    </filter>
+
     <match **>
       @id elasticsearch
       @type "aws-elasticsearch-service"
