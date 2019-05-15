@@ -114,6 +114,7 @@ data "template_file" "helm_fluentd_values" {
     image_tag              = "${var.fluentd_image_tag}"
     region                 = "${var.region}"
     logstash_prefix        = "${var.elasticsearch_logstash_prefix}"
+    aws_account_id         = "${data.aws_caller_identity.current.account_id}"
   }
 }
 
