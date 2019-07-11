@@ -8,7 +8,7 @@ variable "vpc_id" {
 
 variable "elasticsearch_subnet_ids" {
   description = "List of subnet ids to host the Elasticsearch cluster"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "elasticsearch_domain_name" {
@@ -47,13 +47,13 @@ variable "elasticsearch_dedicated_master_type" {
 
 variable "elasticsearch_allowed_cidrs" {
   description = "List of CIDR ranges to allow HTTPS access to the elasticsearch cluster"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "tags" {
   description = "Map of tags to apply to resources"
-  type        = "map"
+  type        = map(string)
   default     = {}
 }
 
@@ -64,7 +64,7 @@ variable "elasticsearch_enable_zone_awareness" {
 
 variable "trusted_roles_arns" {
   description = "List of trusted role arns allowed to assume role allowed for logging into Elasticsearch"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -107,3 +107,4 @@ variable "elasticsearch_logstash_prefix" {
   description = "Prefix of logstash indexes created in ElasticSearch"
   default     = "logstash"
 }
+
