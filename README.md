@@ -34,7 +34,7 @@ module "my-logging" {
 | `elasticsearch_dedicated_master_count` | Number of dedicated master instances in the elasticsearch cluster | n/a | `3` |  no |
 | `elasticsearch_dedicated_master_type` | Instance type of the elasticsearch dedicated masters | n/a | `"r5.large.elasticsearch"` |  no |
 | `elasticsearch_domain_name` | Name of the Elasticsearch cluster | n/a | n/a |  yes |
-| `elasticsearch_enable_zone_awareness` | Enable multi-avaliability zone deployment of the Elasticsearch nodes. (If enabled, the number of subnets must be a multiple of the instance_count) | n/a | n/a |  yes |
+| `elasticsearch_enable_zone_awareness` | Enable multi-avaliability zone deployment of the Elasticsearch nodes. (If enabled, the number of subnets must be a multiple of the instance_count) | Boolean | n/a |  no |
 | `elasticsearch_instance_count` | Number of instances in the elasticsearch cluster | n/a | `1` |  no |
 | `elasticsearch_instance_type` | Instance type of the elasticsearch cluster | n/a | `"r5.large.elasticsearch"` |  no |
 | `elasticsearch_logstash_prefix` | Prefix of logstash indexes created in ElasticSearch | n/a | `"logstash"` |  no |
@@ -47,9 +47,9 @@ module "my-logging" {
 | `fluentd_namespace` | The kubernetes namespace to use for the fluentd deployment | n/a | `"logging"` |  no |
 | `fluentd_release_name` | Name for the fluentd deployment | n/a | `"fluentd-elasticsearch"` |  no |
 | `region` | AWS region name | n/a | n/a |  yes |
-| `tags` | Map of tags to apply to resources | map(string) | n/a |  yes |
+| `tags` | Map of tags to apply to resources | map(string) | n/a |  no |
 | `tiller_service_account` | Tiller service account name used for helm | n/a | `"tiller"` |  no |
-| `trusted_roles_arns` | List of trusted role arns allowed to assume role allowed for logging into Elasticsearch | list(string) | n/a |  yes |
+| `trusted_roles_arns` | List of trusted role arns allowed to assume role allowed for logging into Elasticsearch | list(string) | n/a |  no |
 | `vpc_id` | VPC ID | n/a | n/a |  yes |
 
 ## Outputs
