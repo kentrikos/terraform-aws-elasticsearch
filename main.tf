@@ -33,6 +33,10 @@ resource "aws_elasticsearch_domain" "this" {
     zone_awareness_enabled   = var.elasticsearch_enable_zone_awareness
   }
 
+  zone_awareness_config {
+    availability_zone_count  = var.elasticsearch_zone_count
+  }
+  
   vpc_options {
     # subnet_ids         = ["${slice(var.subnet_ids, 0, (local.enable_zone_awareness == 0 ? 1 : length(var.subnet_ids) - (length(var.subnet_ids) % 2) ))}"]
     subnet_ids         = var.elasticsearch_subnet_ids
