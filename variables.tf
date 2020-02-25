@@ -62,6 +62,11 @@ variable "elasticsearch_enable_zone_awareness" {
   default     = false
 }
 
+variable "elasticsearch_zone_count" {
+  description = "(Optional) Number of Availability Zones for the domain to use with zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3"
+  default     = 2
+}
+
 variable "trusted_roles_arns" {
   description = "List of trusted role arns allowed to assume role allowed for logging into Elasticsearch"
   type        = list(string)
